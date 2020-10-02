@@ -1,0 +1,40 @@
+<h2>User info</h2>
+
+<%= form_with model:@user, local: true do |f| %>
+
+	<!-- エラーメッセージ表示-->
+<% if @user.errors.any? %>
+    
+  <div class="alert-warning">
+    <div class="alert1">
+    <p><%= pluralize(@user.errors.count, "error") %></p>
+    </div>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+	<!-- エラーメッセージ表示-->
+
+	<div class="field">
+		<%= f.label :name %>
+		<%= f.text_field :name, class: "name" %>
+	</div>
+
+	<div class="field">
+		<%= f.label :image %>
+		<%= f.attachment_field :profile_image, class: "user_image" %>
+	</div>
+
+	<div class="field">
+		<%= f.label :introduction %>
+		<%= f.text_area :introduction, class: "introduction" %>
+	</div>
+
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+
+<% end %>
